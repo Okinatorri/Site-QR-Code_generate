@@ -53,7 +53,7 @@ def download_qr():
     if not file_url:
         return 'Файл не указан', 400
 
-    # убираем /static/ и делаем абсолютный путь
+    
     safe_path = file_url.replace("/static/", "", 1)
     filepath = os.path.join(app.static_folder, safe_path)
 
@@ -66,4 +66,5 @@ def download_qr():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
