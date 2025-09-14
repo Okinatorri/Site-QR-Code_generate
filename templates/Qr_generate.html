@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='qr.css') }}" />
+
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+
+
+
+    <title>QR CITY</title>
+</head>
+<body>
+    <img class="bg" src="{{ url_for('static', filename='image/bg.png') }}" alt="">
+    <h1 class="title">QR-City</h1>
+
+    <div class="container_block">
+        <div class="qr_block" id="qrDisplay">
+            <img id="qrImage" class="QR_codee"></img>
+        </div>
+
+        <div class="form_block_1">
+            <h1 class="name_color_block">Выберите цвет переднего плана</h1>
+            <div class="color_block">
+                <h1 class="mini_name_color_block">Сайт поддерживает только формат цветов: #000000</h1>
+                <div class="mini_color">
+                    <div id="colorBox1"></div>
+                    <input type="text" id="foregroundInput" placeholder="например #ff0000 или red">
+                </div>
+            </div>
+        </div>
+
+        <h1 class="name_color_block_2">Выберите цвет заднего фона</h1>
+        <div class="color_block_2">
+            <h1 class="mini_name_color_block_2">Не делайте цвета переднего плана и фона слишком похожими, иначе код может не читаться!</h1>
+            <div class="mini_color">
+                <div id="colorBox2"></div>
+                <input type="text" id="backgroundInput" placeholder="например #ff0000 или red">
+            </div>
+        </div>
+
+        <div class="form_block_3">
+            <h1 class="Name_boton">Загрузите фон вашего Qr-кода сами!</h1>
+            <button class="button_foto">+</button>
+        </div>
+
+        <div>
+            <h1 class="URL">Ваш URL-адрес:</h1>
+            <input type="text" id="urlInput" class="input_url" placeholder="Введите URL-адрес">
+        </div>
+
+        <div class="buttons-container">
+            <button id="sendBtn" class="button_generate">Создать Qr-код</button>
+            <button class="button_down">Скачать</button>
+        </div>
+        
+        <div id="message" class="message"></div>
+    </div>
+
+
+
+    
+
+    <script>
+        // Функция для проверки и применения цвета
+        function applyColor(inputId, colorBoxId) {
+            const colorInput = document.getElementById(inputId);
+            const colorBox = document.getElementById(colorBoxId);
+            
+            colorInput.addEventListener('input', function() {
+                const colorValue = this.value;
+                
+                // Проверяем, является ли введенное значение допустимым цветом
+                const tempElement = document.createElement('div');
+                tempElement.style.color = 'invalid';
+                tempElement.style.color = colorValue;
+                
+                if (tempElement.style.color !== 'invalid') {
+                    colorBox.style.backgroundColor = colorValue;
+                    colorInput.style.borderColor = '#ddd'; // Сброс цвета границы если все правильно
+                } else {
+                    colorInput.style.borderColor = '#e74c3c'; // Подсветка ошибки
+                }
+            });
+        }
+
+        // Применяем обработчики для обоих цветовых полей
+        applyColor('foregroundInput', 'colorBox1');
+        applyColor('backgroundInput', 'colorBox2');
+
+        // Обработчик для кнопки отправки
+let lastFilePath = null; // будем хранить путь к последнему созданному QR
+
+document.getElementById('sendBtn').addEventListener('click', function() {
+    const data = {
+        url: document.getElementById('urlInput').value,
+        foregroundColor: document.getElementById('foregroundInput').value || '#000000',
+        backgroundColor: document.getElementById('backgroundInput').value || '#FFFFFF'
+    };
+
+    if (!data.url) {
+        showMessage('Пожалуйста, введите URL-адрес', 'error');
+        return;
+    }
+
+    fetch('/make_qr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.status === "done") {
+            lastFilePath = result.file; // сохраняем путь к файлу
+
+            const qrImage = document.getElementById('qrImage');
+            qrImage.src = result.file + '?t=' + new Date().getTime();
+            qrImage.style.display = 'block';
+        } else {
+            showMessage('Ошибка при создании QR', 'error');
+        }
+    })
+    .catch(error => {
+        console.error(error);
+        showMessage('Ошибка при отправке запроса', 'error');
+    });
+});
+
+document.querySelector('.button_down').addEventListener('click', function() {
+    if (lastFilePath) {
+        window.location.href = `/download?file=${encodeURIComponent(lastFilePath)}`;
+    } else {
+        showMessage('Сначала создайте QR-код', 'error');
+    }
+});
+
+        
+
+    </script>
+
+
+</body>
+</html>

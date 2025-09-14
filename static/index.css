@@ -1,0 +1,291 @@
+
+* { margin: 0; padding: 0; }
+body { margin: 0; 
+  overflow-x: hidden;
+}
+ 
+.header_image {
+    width: 100%;
+    height: 1040px;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.QR_CITY {
+  position: absolute;
+  top: 403px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Prompt', sans-serif;
+  font-size: 160px;
+  font-weight: 700;
+  color: #ffffff; /* белый текст */
+  text-align: center;
+  margin-top: 20px;
+
+  /* Внутренняя тень сверху */
+  text-shadow: 0px -2px 4px rgba(0, 0, 0, 0.6);
+}
+
+
+
+.GO {
+    position: absolute;
+    top: 700px;
+    left: 50%;
+    width: 221px;
+    height: 75px;
+    transform: translateX(-50%);
+    font-family: 'Play', sans-serif;
+    font-size: 48px;
+    font-weight: 500;
+    color: #ffffff; /* белый текст */
+    text-align: center;
+
+    background-color: #165EEB; /* ярко-оранжевый фон */
+    border: none;
+    border-radius: 30px; /* скругленные углы */
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* легкая тень */
+    
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* плавный переход для эффектов наведения */
+}
+
+.Info{
+    position: relative;
+    width: 1055px;
+    height: auto;
+    margin-top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+
+}
+
+
+
+
+
+.qr {
+  font-family: 'Play', sans-serif;
+}
+.os{
+  font-family: 'PT Sans', sans-serif;
+}
+
+
+.Zagolovok {
+    position: relative;
+    font-size: 80px;
+    font-weight: 400;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background: linear-gradient(to right, #FFC92B, #FB8343, #9974F1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+.opisanie{
+    position: relative;
+    font-size: 24px;
+    font-weight: 300;
+    left: 50%;
+    width: 880px;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+
+
+
+
+.block_1 {
+  position: relative;
+  width: 900px;
+  height: 600px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  left: 50%;
+  margin-top: 92px;
+  transform: translateX(-50%);
+}
+.text_blok1{
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'PT Sans', sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  text-align: left;
+  width: 827px;
+  top: 60px;
+  color: #333333;
+}
+.block_1_image{
+  position: relative;
+  width: 900px;
+  height: 600px;
+  border-radius: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.Block_title_1, .Block_title_2, .Block_title_3, .Block_title_4 {
+  position: absolute;
+  width: 440px;
+  height: 700px;
+  margin-top: 30px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  left: 50%;
+  margin-left: 230px;
+  transform: translateX(-50%);
+}
+.Block_title_2 {
+  margin-left: -230px;
+  background: linear-gradient(to right, #FFC92B, #FB8343, #F1749D);
+  font-family: 'PT Sans', sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: #ffffff;
+
+}
+.Block_title_3 {
+  margin-top: 750px;
+  background: linear-gradient(to right, #FFC92B, #FB8343, #F1749D);
+  font-family: 'PT Sans', sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  color: #ffffff;
+}
+.Block_title_4 {
+  margin-left: -230px;
+  margin-top: 750px;
+  background-image: url("/static/image/Rectangle 3.png");
+  background-size: 130%;       /* растянули на 20% больше */
+  background-position: center; /* центрируем */
+  background-repeat: no-repeat;
+}
+
+.text_blok1_title {
+  left: 50%;
+  margin-top: 150px;
+  transform: translateX(2%);
+}
+.Block_title_1{
+  background-image: url("/static/image/Фото.png");
+  background-size: 130%;       /* растянули на 20% больше */
+  background-position: center; /* центрируем */
+  background-repeat: no-repeat;
+}
+.block_test {
+  position: absolute;
+  width: 900px;
+  height: 700px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 1500px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 30px;
+}
+.text_test {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 60px;
+  font-weight: 600;
+  color: #333333;
+  left: 50%;
+  margin-top: 30px;
+  text-align: center;
+}
+.block_1_image_test{
+  position: absolute;
+  width: 828px;
+  height: 421px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 100px;
+}
+
+.play-btn{
+  --size: 80px;              /* меняй размер тут */
+  --bg: #F1749D;             /* цвет круга */
+  width: var(--size);
+  height: var(--size);
+  border: none;
+  border-radius: 50%;
+  background: radial-gradient(80% 80% at 30% 30%, #EB6550, var(--bg));
+  box-shadow: 0 8px 20px rgba(0,0,0,.25), inset 0 0 0 2px rgba(255,255,255,.2);
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+  transition: transform .15s ease, box-shadow .15s ease;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 280px;
+  z-index: 10;
+}
+
+/* белый треугольник */
+.play-btn::before{
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-40%, -50%); /* чуть сместим вправо визуально */
+  width: 0; height: 0;
+  border-top: calc(var(--size) * .18) solid transparent;
+  border-bottom: calc(var(--size) * .18) solid transparent;
+  border-left: calc(var(--size) * .28) solid #fff; /* собственно треугольник */
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.25));
+}
+
+.play-btn:active {
+  transform: translateX(-50%) scale(.89);
+}
+
+.end_info {
+  position: absolute; 
+  width: 100%;
+  height: 975px;
+  top: 4350px;
+  background-color: #00246d;
+
+}
+
+
+
+.tg_ {
+  position: relative;
+  display: inline-block;
+  font-size: 32px;
+  color: rgb(0, 0, 0);
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 100px;
+}
+.tg_::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;        /* отступ от текста */
+  width: 120%;         /* 👈 делаем длиннее текста */
+  height: 3px;
+  background: rgb(0, 0, 0);
+}
+
+.Podder, .Podder_2 {
+  left: 50%;
+  margin-top: 120px;
+  transform: translateX(0%);
+  text-align: center;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 80px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.Podder_2 {
+  font-size: 30px;
+  font-weight: 400;
+}

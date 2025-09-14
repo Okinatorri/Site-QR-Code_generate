@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css"  href="{{ url_for('static', filename='index.css') }}" />
+
+
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+
+    <title>QR CITY</title>
+</head>
+<body>
+    
+<img src="{{ url_for('static', filename='image/car_mockup_iphone_11 1.png') }}" alt="" class="header_image">
+<h1 class="QR_CITY">QR CITY</h1>
+<button onclick="window.location.href='/Qr_code'" class="GO">GO</button>
+
+
+
+<div>
+    <div class="Info">
+        
+        <p class="Zagolovok">
+            <span class="os">ОСОБЕННОСТИ</span>
+            <span class="qr">QR CITY</span>
+        </p>
+        <h6 class="opisanie">Мы поможем вам сделать ваши QR-Коды красивыми и эстетичными. Только с нами вы можете абсолютно без рекламы и прочих не удобностей делать полностью рабочие QR-коды из ваших сыллок.</br>Выбирая нас мы надеемся что вы с комфортом и удобством сможете сделать то что вам необходимо. </br>Желаем вам приятного пользования нашим сайтом!</h6>
+
+        <div class="block_1">
+            <h1 class="text_blok1">Работают по всему миру. </br>Быстро и просто.</h1>
+            <img src="{{ url_for('static', filename='image/blok_1.png') }}" alt="" class="block_1_image">
+        </div>
+
+        <div>
+            <div class="Block_title_1"></div>
+            <div class="Block_title_2"><h1 class="text_blok1_title">Самые красивые </br>QR-коды</h1></div>
+            <div class="Block_title_3"><h1 class="text_blok1_title">Возможность делать все так как вам будет красиво!</h1></div>
+            <div class="Block_title_4"></div>
+        </div>
+        <div class="block_test">
+            <h1 class="text_test">Попробуйте сами!</h1>
+            <button class="play-btn" aria-label="Play"></button>
+
+            <img src="{{ url_for('static', filename='image/image2.png') }}" alt="" class="block_1_image_test">
+        </div>
+    </div>
+
+
+
+    <div class="end_info">
+        <h1 class="Podder">Хотите поддержать проект?</h1>
+        <h1 class="Podder_2">Все контакты есть ниже:</h1>
+        <h1 class="tg_">tg: @zymer44</br>zymer464@gmail.com</h1>
+        <h1 class="Podder_2">Скоро еще больше!</h1>
+    </div>
+
+</div>
+
+
+</body>
+</html>
