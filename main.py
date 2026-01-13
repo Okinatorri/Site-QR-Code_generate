@@ -33,12 +33,12 @@ def Qr():
 @app.route("/make_qr", methods=["POST"])
 def make_qr():
     try:
-        # ----- текстовые данные -----
+
         url = request.form.get('url', '')
         foreground_color = request.form.get('foregroundColor', '#000000')
         background_color = request.form.get('backgroundColor')
 
-                # --- тень ---
+
         shadow_enabled = request.form.get('shadowEnabled') == 'on'
         shadow_color = request.form.get('shadowColor') or "#000000"
 
@@ -50,17 +50,13 @@ def make_qr():
         print("FG:", foreground_color)
         print("BG:", background_color)
 
-        # ----- файл (если есть) -----
         bg_path = None
         bg_image = request.files.get('backgroundImage')
         bg_pil = None
         if bg_image and bg_image.filename:
             print("Картинка получена:", bg_image.filename)
             bg_pil = Image.open(bg_image.stream).convert("RGBA")
-            # сохраняем загруженную картинку
 
-
-        # ----- генерация QR -----
         resultt = make_qr_2(
             url,
             foreground_color,
@@ -89,7 +85,6 @@ def download_qr():
     if not file_url:
         return 'Файл не указан', 400
 
-    # убираем /static/ и делаем абсолютный путь
     safe_path = file_url.replace("/static/", "", 1)
     filepath = os.path.join(app.static_folder, safe_path)
 
@@ -102,4 +97,5 @@ def download_qr():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
 
