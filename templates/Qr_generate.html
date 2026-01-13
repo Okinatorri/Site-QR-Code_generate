@@ -12,7 +12,7 @@
 
 
 
-
+    <script src="{{ url_for('static', filename='js/index.js') }}" defer></script>
     <title>QR CITY</title>
 </head>
 <body>
@@ -46,12 +46,34 @@
 
         <div class="form_block_3">
             <h1 class="Name_boton">Загрузите фон вашего Qr-кода сами!</h1>
-            <button class="button_foto">+</button>
+            <button class="button_foto" type="button">+</button>
+
+            <!-- скрытый input -->
+            <input 
+                type="file"
+                id="bgImageInput"
+                accept="image/*"
+                style="display: none;"
+            >
         </div>
+        
+
+
 
         <div>
             <h1 class="URL">Ваш URL-адрес:</h1>
             <input type="text" id="urlInput" class="input_url" placeholder="Введите URL-адрес">
+        </div>
+
+        <div class="shadow_block">
+            <label>
+                <input type="checkbox" id="shadowToggle" class="shadowToggle" checked>
+                <h1 class="sha">Включить тень</h1>
+            </label>
+            <div id="shadowColorContainer">
+                <h1 class="mini_name_color_block_3">Цвет тени:</h1>
+                <input type="color" id="shadowColor" class="shadowColor" value="#000000">
+            </div>
         </div>
 
         <div class="buttons-container">
@@ -63,85 +85,6 @@
     </div>
 
 
-
-    
-
-    <script>
-        // Функция для проверки и применения цвета
-        function applyColor(inputId, colorBoxId) {
-            const colorInput = document.getElementById(inputId);
-            const colorBox = document.getElementById(colorBoxId);
-            
-            colorInput.addEventListener('input', function() {
-                const colorValue = this.value;
-                
-                // Проверяем, является ли введенное значение допустимым цветом
-                const tempElement = document.createElement('div');
-                tempElement.style.color = 'invalid';
-                tempElement.style.color = colorValue;
-                
-                if (tempElement.style.color !== 'invalid') {
-                    colorBox.style.backgroundColor = colorValue;
-                    colorInput.style.borderColor = '#ddd'; // Сброс цвета границы если все правильно
-                } else {
-                    colorInput.style.borderColor = '#e74c3c'; // Подсветка ошибки
-                }
-            });
-        }
-
-        // Применяем обработчики для обоих цветовых полей
-        applyColor('foregroundInput', 'colorBox1');
-        applyColor('backgroundInput', 'colorBox2');
-
-        // Обработчик для кнопки отправки
-let lastFilePath = null; // будем хранить путь к последнему созданному QR
-
-document.getElementById('sendBtn').addEventListener('click', function() {
-    const data = {
-        url: document.getElementById('urlInput').value,
-        foregroundColor: document.getElementById('foregroundInput').value || '#000000',
-        backgroundColor: document.getElementById('backgroundInput').value || '#FFFFFF'
-    };
-
-    if (!data.url) {
-        showMessage('Пожалуйста, введите URL-адрес', 'error');
-        return;
-    }
-
-    fetch('/make_qr', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(result => {
-        if (result.status === "done") {
-            lastFilePath = result.file; // сохраняем путь к файлу
-
-            const qrImage = document.getElementById('qrImage');
-            qrImage.src = result.file + '?t=' + new Date().getTime();
-            qrImage.style.display = 'block';
-        } else {
-            showMessage('Ошибка при создании QR', 'error');
-        }
-    })
-    .catch(error => {
-        console.error(error);
-        showMessage('Ошибка при отправке запроса', 'error');
-    });
-});
-
-document.querySelector('.button_down').addEventListener('click', function() {
-    if (lastFilePath) {
-        window.location.href = `/download?file=${encodeURIComponent(lastFilePath)}`;
-    } else {
-        showMessage('Сначала создайте QR-код', 'error');
-    }
-});
-
-        
-
-    </script>
 
 
 </body>
